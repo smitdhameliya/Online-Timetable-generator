@@ -1,0 +1,209 @@
+<md-card class="md-whiteframe-7dp" id="subjects-page">
+  <!-- <md-card-title>
+      <md-card-title-text>
+        <span class="md-headline">Resources</span>
+      </md-card-title-text>
+    </md-card-title> -->
+
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button aria-label="Settings" ng-disabled="true">
+        <md-icon md-svg-icon="static/admin/assets/svg/subjects.svg"></md-icon>
+      </md-button>
+
+      <h2 flex md-truncate>Disciplines</h2>
+      
+      <md-button class="md-icon-button" ui-sref="Home">
+        <md-icon md-svg-src="static/admin/assets/svg/close.svg" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-card-content layout="column">
+    <md-tabs md-swipe-content flex>
+      <md-tab label="{{discipline.name}}" ng-repeat="discipline in sub.disciplines" layout="column" md-on-select="sub.selectedDiscipline = discipline.name">
+
+        <md-tabs flex md-align-tabs="bottom" class="innerTabs" md-stretch-tabs="always">
+          <md-tab label="{{sem.name}}" ng-repeat="sem in discipline.semesters" md-on-select="sub.selectedSemester = sem.name">
+            <div class="subjects">
+              <div ng-click="sub.select_subject(subject,$event)" class="subject md-whiteframe-7dp" ng-repeat="subject in sem.subjects">
+                <span>{{subject.name}}</span>
+              </div>
+              <div ng-click="sub.showInsertDialog_subject($event)" class="btn-add subject md-whiteframe-7dp">
+                <md-tooltip>Insert new Faculty</md-tooltip>
+                <md-icon md-svg-src="static/admin/assets/svg/plus-symbol.svg"></md-icon>
+              </div>
+            </div>
+          </md-tab>
+        </md-tabs>
+
+      </md-tab>
+    </md-tabs>
+
+
+    <div style="visibility: hidden">
+      <div id="editSubject" class="md-dialog-container">
+        <md-dialog aria-label="{{sub.ed_Subject.name!=='' || 'Insert Subject'}} ( {{sub.ed_Subject.subcode}} )">
+          <md-toolbar>
+            <div class="md-toolbar-tools">
+              <h2 ng-show="sub.ed_Subject.subcode !== 0 && sub.ed_Subject.subcode !== ''">{{sub.ed_Subject.name}} ( {{sub.ed_Subject.subcode}} )</h2>
+              <span flex></span>
+            </div>
+          </md-toolbar>
+          <md-dialog-content layout-padding>
+            <form name="sub.form_edit_subject">
+              <div layout="column">
+                <div class="md-block">
+                  <div layout="row" flex>
+
+                    <md-input-container>
+                      <label>Subject Name</label>
+                      <input name="name" ng-model="sub.ed_Subject.name" required>
+                      <div ng-messages="sub.form_edit_subject.name.$error" ng-show="sub.form_edit_subject.name.$dirty && !sub.form_edit_subject.name.$error">
+                        <div ng-message="required">Please provide name of Subject!</div>
+                      </div>
+                    </md-input-container>
+                    <md-input-container>
+                      <label>Subject Code</label>
+                      <input name="subcode" type="number" ng-model="sub.ed_Subject.subcode" ng-readonly="sub.action === 'update'">
+                      <div ng-if="sub.action === 'insert'" ng-messages="sub.form_edit_subject.subcode.$error" ng-show="sub.form_edit_subject.subcode.$dirty && !sub.form_edit_subject.subcode.$error">
+                        <div ng-message="required">Please provide subject code!</div>
+                      </div>
+                    </md-input-container>
+
+                  </div>
+                  <div class="md-block">
+                    <fieldset>
+                      <legend>Subject Schema</legend>
+                      <div layout="row" layout-wrap flex>
+                        <div flex="100" class="schema">
+                          <div layout="row">
+                            <md-checkbox ng-model="sub.isLectures" ng-checked="sub.ed_Subject.schema.lectures>0" ng-class="(sub.isLectures)?'Margin_auto':''">
+                              Lectures
+                            </md-checkbox>
+                            <md-input-container ng-if="sub.isLectures">
+                              <label>Number of Lectures</label>
+                              <input name="schema_lectures" type="number" ng-model="sub.ed_Subject.schema.lectures" required>
+                              <div ng-messages="sub.form_edit_subject.name.$error" ng-show="sub.form_edit_subject.name.$dirty && !sub.form_edit_subject.name.$error">
+                                <div ng-message="required">Please provide no of Lectures!</div>
+                              </div>
+                            </md-input-container>
+                          </div>
+
+                          <div layout="row">
+                            <md-checkbox ng-model="sub.isLabs" ng-checked="sub.ed_Subject.schema.labs>0" ng-class="(sub.isLabs)?'Margin_auto':''">
+                              Labs
+                            </md-checkbox>
+                            <md-input-container ng-if="sub.isLabs">
+                              <label>Number of Labs</label>
+                              <input name="schema_labs" type="number" ng-model="sub.ed_Subject.schema.labs" required>
+                              <div ng-messages="sub.form_edit_subject.schema_labs.$error" ng-show="sub.form_edit_subject.schema_labs.$dirty && !sub.form_edit_subject.schema_labs.$error">
+                                <div ng-message="required">Please provide no of Labs!</div>
+                              </div>
+                            </md-input-container>
+                          </div>
+
+
+                          <div layout="row">
+                            <md-checkbox ng-model="sub.isTutorials" ng-checked="sub.ed_Subject.schema.tutorials>0" ng-class="(sub.isTutorials)?'Margin_auto':''">
+                              Tutorials
+                            </md-checkbox>
+                            <md-input-container ng-if="sub.isTutorials">
+                              <label>Number of Tutorials</label>
+                              <input name="schema_tutorials" type="number" ng-model="sub.ed_Subject.schema.tutorials" required>
+                              <div ng-messages="sub.form_edit_subject.schema_tutorials.$error" ng-show="sub.form_edit_subject.schema_tutorials.$dirty && !sub.form_edit_subject.schema_tutorials.$error">
+                                <div ng-message="required">Please provide no of tutorials!</div>
+                              </div>
+                            </md-input-container>
+                          </div>
+
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <div class="md-block topSpacing" ng-show="sub.action==='update'">
+                    <span class="md-title">Faculties</span>
+                    <md-chips ng-model="sub.ed_Subject.faculties" readonly="true">
+                      <md-chip-template>
+                        <span>
+                          <strong>{{$chip.name}}</strong>
+                        </span>
+                      </md-chip-template>
+                      <button md-chip-remove class="md-primary vegetablechip">
+                        <md-icon md-svg-icon="md-close"></md-icon>
+                      </button>
+                    </md-chips>
+                  </div>
+
+                  <div class="md-block topSpacing">
+                    <div layout="row">
+                      <span class="md-title">Subject Type:</span>
+                      <md-radio-group class="radioType" ng-model="sub.ed_Subject.elective" layout-gt-xs="row" layout-xs="column">
+                        <md-radio-button value="0" class="md-primary">Selective</md-radio-button>
+                        <md-radio-button value="1"> Elective </md-radio-button>
+                      </md-radio-group>
+                    </div>
+                  </div>
+
+                  <div class="md-block topSpacing">
+                    <div layout="row">
+                      <span class="md-title">Shift:</span>
+                      <md-radio-group class="radioType" ng-model="sub.ed_Subject.shift" layout-gt-xs="row" layout-xs="column" ng-required="true">
+                        <md-radio-button value="Morning" class="md-primary">Morning</md-radio-button>
+                        <md-radio-button value="Afternoon"> Afternoon </md-radio-button>
+                        <md-radio-button value="Both"> Both </md-radio-button>
+                      </md-radio-group>
+                    </div>
+                  </div>
+
+                  <div class="md-block topSpacing">
+                    <md-input-container ng-if="sub.isLabs && sub.ed_Subject.schema.labs > 0">
+                      <label>Number of Batches</label>
+                      <input name="no_batch" type="number" ng-model="sub.ed_Subject.no_batch" required>
+                      <div ng-messages="sub.ed_Subject.no_batch < 1" ng-show="sub.form_edit_subject.no_batch.$dirty && sub.ed_Subject.no_batch < 1">
+                        <div ng-message="required">Please provide no of Batches!</div>
+                      </div>
+                    </md-input-container>
+                  </div>
+
+                  <div class="md-block">
+                    <div class="batches_list">
+                      <md-input-container ng-repeat="i in sub.getNumber(sub.ed_Subject.no_batch || sub.ed_Subject.batches.length) track by $index">
+                        <label>Batch {{i}}</label>
+                        <input name="batch_{{i}}" ng-model="sub.ed_Subject.batches[$index].name" required>
+                        <div ng-messages="sub.ed_Subject.batches[$index].name === ''" ng-show="sub.form_edit_subject.batch_{{i}} && sub.ed_Subject.batches[$index].name === ''">
+                          <div ng-message="required">Please provide name of Batch!</div>
+                        </div>
+                      </md-input-container>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          </md-dialog-content>
+
+          <md-dialog-actions layout="row">
+            <md-button id="btn-remove" ng-if="sub.action === 'update'" ng-click="sub.removeSubject($event)">
+              Remove
+              <span>Subject</span>
+            </md-button>
+            <span flex></span>
+            <md-button ng-if="sub.form_edit_subject.$dirty" ng-click="sub.subject_action(sub.action)" md-autofocus>
+              {{sub.action | uppercase}}
+            </md-button>
+            <md-button ng-click="sub.dialog_cancel_subject()">
+              CANCEL
+            </md-button>
+          </md-dialog-actions>
+        </md-dialog>
+      </div>
+    </div>
+
+
+  </md-card-content>
+  <!-- <md-card-action layout="row" layout-align="end center">
+            <md-button>btn 1</md-button>
+            <md-button>btn 2</md-button>
+        </md-card-action> -->
+</md-card>

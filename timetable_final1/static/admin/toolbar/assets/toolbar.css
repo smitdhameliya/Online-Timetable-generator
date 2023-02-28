@@ -1,0 +1,36 @@
+#btn-user-profile .content-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+md-toolbar {
+  font-family: 'PT Sans', sans-serif; }
+  md-toolbar .md-button {
+    color: white;
+    margin: 0;
+    min-width: 50px;
+    min-height: 50px; }
+  md-toolbar md-menu-bar md-menu.md-open > .md-button {
+    background: rgba(238, 238, 238, 0.2) !important; }
+
+#user-menu {
+  padding: 0; }
+
+#btn-user-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  margin: 0;
+  padding: 10px; }
+  #btn-user-profile .content-wrapper .username {
+    text-transform: capitalize;
+    margin-left: 5px;
+    font-size: 18px; }
+
+#img-user {
+  width: 50px;
+  height: 50px; }

@@ -1,0 +1,314 @@
+#timetable-page .under-part {
+  z-index: 100; }
+  #timetable-page .under-part .classroom-details {
+    color: #ffffff;
+    margin: 10px; }
+    #timetable-page .under-part .classroom-details span {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center; }
+
+#timetable-page .ml30 {
+  margin-left: 30px; }
+
+#timetable-page .outer-part {
+  z-index: 101; }
+
+#timetable-page .header {
+  min-height: 60px;
+  padding: 4px 0 0 10px;
+  background: #ff5252; }
+  #timetable-page .header > div {
+    margin-left: 20px; }
+  #timetable-page .header .status {
+    color: #ffffff;
+    margin: 5px 0 5px 41px; }
+    #timetable-page .header .status span:not(.smbl) {
+      text-decoration: underline; }
+
+#timetable-page .headline {
+  font-size: 20px !important;
+  font-weight: 400;
+  margin-bottom: 5px; }
+  #timetable-page .headline span {
+    color: #ffffff;
+    margin-left: 10px; }
+
+#timetable-page .section-timetable {
+  overflow: auto;
+  height: 100%; }
+  #timetable-page .section-timetable table {
+    height: calc(100% - 1px);
+    min-width: 100%;
+    min-height: calc(100% - 1px);
+    border-collapse: collapse; }
+    #timetable-page .section-timetable table thead {
+      background: rgba(0, 0, 0, 0.03); }
+      #timetable-page .section-timetable table thead th {
+        padding: 5px 0;
+        color: rgba(0, 0, 0, 0.54); }
+    #timetable-page .section-timetable table tbody tr {
+      -webkit-transition: all .5s ease;
+      -o-transition: all .5s ease;
+      transition: all .5s ease;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+      #timetable-page .section-timetable table tbody tr th, #timetable-page .section-timetable table tbody tr td {
+        padding: 0 10px; }
+      #timetable-page .section-timetable table tbody tr th {
+        background-color: #dcdcdc; }
+      #timetable-page .section-timetable table tbody tr td {
+        color: rgba(0, 0, 0, 0.87); }
+        #timetable-page .section-timetable table tbody tr td.highlight {
+          background-color: #00E676; }
+        #timetable-page .section-timetable table tbody tr td .span-sub, #timetable-page .section-timetable table tbody tr td .span-batch, #timetable-page .section-timetable table tbody tr td .span-room, #timetable-page .section-timetable table tbody tr td .span-fac {
+          display: inline !important; }
+        #timetable-page .section-timetable table tbody tr td .span-fac {
+          font-size: 12px; }
+        #timetable-page .section-timetable table tbody tr td .data {
+          cursor: pointer; }
+          #timetable-page .section-timetable table tbody tr td .data.highlight {
+            -webkit-transition: all .5s ease;
+            -o-transition: all .5s ease;
+            transition: all .5s ease;
+            background: rgba(255, 82, 82, 0.6) !important;
+            color: #ffffff !important;
+            padding: 7px; }
+      #timetable-page .section-timetable table tbody tr:hover {
+        background-color: #EEEEEE; }
+
+#timetable-page .section-config {
+  background-color: #ffffff;
+  overflow: hidden;
+  -webkit-transition: all .45s ease;
+  -o-transition: all .45s ease;
+  transition: all .45s ease; }
+  #timetable-page .section-config.small {
+    width: 50px; }
+  #timetable-page .section-config .btn-left {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    max-width: 52px;
+    border: none !important;
+    min-width: 52px;
+    margin: auto 0 !important;
+    padding: 14px 0; }
+    #timetable-page .section-config .btn-left md-icon.active svg {
+      -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      transform: rotate(180deg); }
+    #timetable-page .section-config .btn-left md-icon svg {
+      width: 100%;
+      height: auto;
+      fill: #ff5252;
+      overflow: visible; }
+      #timetable-page .section-config .btn-left md-icon svg polygon, #timetable-page .section-config .btn-left md-icon svg path {
+        -webkit-transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        -o-transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1); }
+    #timetable-page .section-config .btn-left:hover polygon, #timetable-page .section-config .btn-left:hover path {
+      -webkit-transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+      -o-transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1);
+      transition: all 0.7s cubic-bezier(0.2, 1, 0.3, 1); }
+    #timetable-page .section-config .btn-left:hover .arrow {
+      -webkit-animation: arrow-anim 2.5s cubic-bezier(0.2, 1, 0.3, 1) infinite;
+      animation: arrow-anim 2.5s cubic-bezier(0.2, 1, 0.3, 1) infinite; }
+    #timetable-page .section-config .btn-left:hover .arrow-fixed {
+      -webkit-animation: arrow-fixed-anim 2.5s cubic-bezier(0.2, 1, 0.3, 1) infinite;
+      animation: arrow-fixed-anim 2.5s cubic-bezier(0.2, 1, 0.3, 1) infinite; }
+  #timetable-page .section-config form > div {
+    margin: 0 10px; }
+  #timetable-page .section-config span {
+    color: #ff5252 !important; }
+  #timetable-page .section-config .md-input-focused label, #timetable-page .section-config label {
+    color: rgba(124, 77, 255, 0.8) !important; }
+  #timetable-page .section-config .md-button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: auto;
+    color: #ff5252;
+    -webkit-transition: all .54s ease;
+    -o-transition: all .54s ease;
+    transition: all .54s ease; }
+
+#btn-generate {
+  padding: 0 20px;
+  border-radius: 6px;
+  border: 2px solid #ffffff;
+  background-color: transparent; }
+  #btn-generate:hover {
+    border: 2px solid #7c4dff;
+    background-color: #7c4dff !important; }
+
+[disabled] md-input-container > md-select {
+  pointer-events: none; }
+
+[disabled] md-input-container > md-select .md-select-value {
+  background-position: bottom -1px left 0;
+  background-size: 4px 1px;
+  background-repeat: repeat-x;
+  border-bottom-color: transparent;
+  color: rgba(0, 0, 0, 0.38);
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(0, 0, 0, 0.38)), color-stop(33%, rgba(0, 0, 0, 0.38)), color-stop(0, transparent));
+  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.38) 0, rgba(0, 0, 0, 0.38) 33%, transparent 0);
+  background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.38) 0, rgba(0, 0, 0, 0.38) 33%, transparent 0);
+  background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.38) 0, rgba(0, 0, 0, 0.38) 33%, transparent 0); }
+
+#serachbar md-input-container {
+  margin: auto 10px; }
+
+#serachbar span {
+  color: #ffffff !important; }
+
+#serachbar .md-input-focused label, #serachbar label {
+  color: rgba(255, 255, 255, 0.8) !important; }
+
+#serachbar md-checkbox {
+  margin: auto; }
+
+#btn-regen {
+  color: red;
+  padding: 0 20px;
+  border-radius: 6px;
+  border: 2px solid #ffffff;
+  background: #ffffff; }
+  #btn-regen:hover {
+    -webkit-animation: rubberBand .46s;
+    animation: rubberBand .46s; }
+
+@-webkit-keyframes rubberBand {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.83, 1);
+    transform: scale3d(1.25, 0.83, 1); }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1); }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1); }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1); }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1); }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); } }
+
+@keyframes rubberBand {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.83, 1);
+    transform: scale3d(1.25, 0.83, 1); }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1); }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1); }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1); }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1); }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1); } }
+
+@-webkit-keyframes arrow-anim {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    transform: translateX(0); }
+  5% {
+    -webkit-transform: translateX(-0.1rem);
+    transform: translateX(-0.1rem); }
+  100% {
+    -webkit-transform: translateX(1rem);
+    transform: translateX(1rem);
+    opacity: 0; } }
+
+@keyframes arrow-anim {
+  0% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    transform: translateX(0); }
+  5% {
+    -webkit-transform: translateX(-0.1rem);
+    transform: translateX(-0.1rem); }
+  100% {
+    -webkit-transform: translateX(1rem);
+    transform: translateX(1rem);
+    opacity: 0; } }
+
+@-webkit-keyframes arrow-fixed-anim {
+  5% {
+    opacity: 0; }
+  20% {
+    opacity: 0.4; }
+  100% {
+    opacity: 1; } }
+
+@keyframes arrow-fixed-anim {
+  5% {
+    opacity: 0; }
+  20% {
+    opacity: 0.4; }
+  100% {
+    opacity: 1; } }
+
+@media (max-width: 599px) {
+  #timetable-page .timetable-wrraper {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: reverse !important;
+    -ms-flex-direction: column-reverse !important;
+    flex-direction: column-reverse !important; }
+  #timetable-page .section-config {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    -webkit-box-flex: 0;
+    -ms-flex: none;
+    flex: none; }
+    #timetable-page .section-config.small {
+      border-top-right-radius: 0; }
+  #timetable-page .btn-left md-icon {
+    -webkit-transition: all .63s ease;
+    -o-transition: all .63s ease;
+    transition: all .63s ease; }
+    #timetable-page .btn-left md-icon svg {
+      -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      transform: rotate(180deg); }
+    #timetable-page .btn-left md-icon.active svg {
+      -webkit-transform: rotate(0deg) !important;
+      -ms-transform: rotate(0deg) !important;
+      transform: rotate(0deg) !important; } }
+
+@media (min-width: 600px) {
+  #timetable-page {
+    overflow: visible; }
+    #timetable-page .section-config {
+      width: 240px;
+      border-radius: 0 8px 8px 0; }
+    #timetable-page md-card-content {
+      max-height: calc(100vh - 7em); }
+      #timetable-page md-card-content .header {
+        border-top-left-radius: 8px; } }
+
+md-checkbox .md-icon {
+  border-color: #ffffff !important; }

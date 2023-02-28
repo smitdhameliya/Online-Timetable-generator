@@ -1,0 +1,33 @@
+<md-toolbar layout="row" class="md-accent md-whiteframe-4dp">
+  <md-button class="menu" aria-label="show sidenav" ng-click="tbar.toggleSideNav()">
+    <md-icon md-svg-icon="static/admin/assets/svg/menu.svg"></md-icon>
+  </md-button>
+  <md-menu-bar layout="column" id="user-menu" class="md-accent" role="menubar">
+    <md-menu md-position-mode="left bottom" flex>
+      <md-button id="btn-user-profile" aria-label="user profile settings" ng-click="$mdMenu.open()">
+        <div class="content-wrapper" layout="row">
+          <div class="avatar-wrapper" layout="row">
+            <img id="img-user" src="static/admin/assets/images/user.png" alt="user profile picture" class="avatar">
+          </div>
+          <span class="username">
+            Hello, {{tbar.user}}
+          </span>
+        </div>
+      </md-button>
+      <md-menu-content>
+        <md-menu-item>
+          <md-button ng-click="tbar.profileMenuAction('ActivityLog')">Activity Log</md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+          <md-button ng-click="tbar.profileMenuAction('Setting')">Setting</md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+          <md-button ng-click="tbar.profileMenuAction('Logout')">Logout</md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+  </md-menu-bar>
+</md-toolbar>
+<md-progress-linear ng-show="$root.ploading" class="md-accent" md-mode="indeterminate"></md-progress-linear>

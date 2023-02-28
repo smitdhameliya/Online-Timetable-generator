@@ -1,0 +1,82 @@
+<md-card class="md-whiteframe-7dp" id="resources-page">
+  <!-- <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">Resources</span>
+    </md-card-title-text>
+  </md-card-title> -->
+
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+        <md-icon md-svg-icon="static/admin/assets/svg/live_class.svg"></md-icon>
+      </md-button>
+
+      <h2 flex md-truncate>Resources</h2>
+
+      <md-button class="md-icon-button" aria-label="close" ui-sref="Home">
+        <md-icon md-svg-icon="static/admin/assets/svg/close.svg"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+
+  <md-card-content layout="column">
+    <md-tabs md-swipe-content flex>
+      <md-tab label="{{discipline.name}}" ng-repeat="discipline in rs.disciplines">
+
+        <div layout="column" layout-padding>
+
+          <div layout="row">
+            <md-input-container>
+              <label>Origin of classes number</label>
+              <input type="number" ng-model="rs.discipline.startSeriesLectures" ng-value="discipline.lectures[0]">
+            </md-input-container>
+
+            <div class="slider" flex>
+              <div layout="column">
+                <span class="md-body-1">Number of Lecture classes</span>
+                <md-slider flex md-discrete ng-model="rs.discipline.lecturesNo" ng-change="rs.changeLectures(discipline)" step="1" min="1"
+                  max="8" aria-label="rating">
+                </md-slider>
+              </div>
+            </div>
+          </div>
+
+          <div layout="row">
+            <md-chips ng-model="discipline.lectures" readonly="true" md-max-chips="8" placeholder="Lectures...">
+              <md-chip-template>
+                <strong>{{$chip}}</strong>
+              </md-chip-template>
+            </md-chips>
+          </div>
+
+          <div layout="row">
+            <md-input-container>
+              <label>Origin of lab/workshop number</label>
+              <input type="number" ng-model="rs.discipline.startSeriesLab" ng-value="discipline.labs[0]">
+            </md-input-container>
+
+            <div class="slider" flex>
+              <div layout="column">
+                <span class="md-body-1">Number of Labs/Workshops</span>
+                <md-slider flex md-discrete ng-model="rs.discipline.labsNo" step="1" min="1" max="5" aria-label="rating">
+                </md-slider>
+              </div>
+            </div>
+          </div>
+
+          <div layout="row">
+            <md-chips ng-model="discipline.labs" readonly="true" md-max-chips="8" placeholder="Labs...">
+              <md-chip-template>
+                <strong>{{$chip}}</strong>
+              </md-chip-template>
+            </md-chips>
+          </div>
+
+      </md-tab>
+    </md-tabs>
+  </md-card-content>
+  <!-- <md-card-action layout="row" layout-align="end center">
+          <md-button>btn 1</md-button>
+          <md-button>btn 2</md-button>
+      </md-card-action> -->
+</md-card>

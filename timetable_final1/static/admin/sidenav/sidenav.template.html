@@ -1,0 +1,40 @@
+<md-sidenav ng-click="snav.toggleSideNav()" class="md-whiteframe-6dp" md-disable-backdrop md-component-id="left">
+  <md-list class="sidenav-list">
+    <md-list-item>
+      <md-button ui-sref="Home">
+        <md-icon md-svg-src="static/admin/assets/svg/dashboard.svg"></md-icon>
+        <span>Dashboard</span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button ui-sref="Home.resources">
+        <md-icon md-svg-src="static/admin/assets/svg/manage_resources.svg"></md-icon>
+        <span>Manage Resources</span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button ui-sref="Home.timetable">
+        <md-icon md-svg-src="static/admin/assets/svg/generate_timetable.svg"></md-icon>
+        <span>Generate Timetable</span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button ui-sref="Home.faculties">
+        <md-icon md-svg-src="static/admin/assets/svg/manage_faculties.svg"></md-icon>
+        <span>Manage Faculties</span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button ui-sref="Home.subjects" class="coloredSVG">
+        <md-icon md-svg-src="static/admin/assets/svg/notebook.svg"></md-icon>
+        <span>Manage Subjects</span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button ui-sref="Home" ng-click="snav.logout()">
+        <md-icon md-svg-src="static/admin/assets/svg/logout.svg"></md-icon>
+        <span>Logout</span>
+      </md-button>
+    </md-list-item>
+  </md-list>
+</md-sidenav>

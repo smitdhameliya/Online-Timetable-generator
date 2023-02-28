@@ -1,0 +1,17 @@
+#resources-page md-toolbar {
+  background: #8BC34A !important;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px; }
+  #resources-page md-toolbar md-icon {
+    min-width: 20px;
+    width: 20px; }
+
+#resources-page md-card-content {
+  padding: 0; }
+  #resources-page md-card-content md-tabs md-tab-item.md-active {
+    color: #8BC34A !important; }
+  #resources-page md-card-content > span {
+    display: block;
+    margin-top: 18px; }
+  #resources-page md-card-content .slider {
+    margin-left: 10px; }

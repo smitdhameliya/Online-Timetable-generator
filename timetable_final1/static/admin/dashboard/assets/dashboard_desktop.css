@@ -1,0 +1,56 @@
+#mainCircle-container {
+  z-index: 1000;
+  position: absolute;
+  will-change: transform;
+  -webkit-transform: translate3d(50vw, 46vh, 0);
+  transform: translate3d(50vw, 46vh, 0);
+  -webkit-transition: all .7s ease-in-out;
+  -o-transition: all .7s ease-in-out;
+  transition: all .7s ease-in-out; }
+  #mainCircle-container.shrinkCricle {
+    -webkit-transform: translate3d(-8em, 46vh, 0);
+    transform: translate3d(-8em, 46vh, 0); }
+
+#mainCircle {
+  z-index: 101;
+  position: relative; }
+  #mainCircle div, #mainCircle button {
+    position: absolute;
+    border-radius: 50%;
+    background-repeat: no-repeat !important;
+    background-position: center; }
+  #mainCircle button {
+    width: 4em;
+    height: 4em;
+    border: none;
+    will-change: opacity;
+    opacity: 1;
+    background-size: 2em;
+    -webkit-transition: opacity .7s ease, -webkit-transform .9s ease;
+    transition: opacity .7s ease, -webkit-transform .9s ease;
+    -o-transition: opacity .7s ease, transform .9s ease;
+    transition: opacity .7s ease, transform .9s ease;
+    transition: opacity .7s ease, transform .9s ease, -webkit-transform .9s ease;
+    -webkit-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2); }
+    #mainCircle button.shrink {
+      opacity: .5; }
+
+#outer-circle {
+  width: 24em;
+  height: 24em;
+  opacity: 1;
+  will-change: opacity;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  background: #313850 url(/static/admin/assets/images/profile.png) no-repeat center;
+  background-size: 14em; }
+  #outer-circle.btnback {
+    background-image: url(/static/admin/assets/svg/back.svg) !important;
+    background-position-x: 92% !important;
+    background-size: 2.4em !important;
+    cursor: pointer;
+    opacity: .7; }
+
+#view-right {
+  margin: 10px 10px 0px 100px; }

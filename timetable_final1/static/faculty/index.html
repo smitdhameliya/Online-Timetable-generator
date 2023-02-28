@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Faculty</title>
+
+  <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+  <!-- <link rel="stylesheet" href="assets/libs/Angular_Material/angular-material.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.9/angular-material.min.css">
+  <link rel="stylesheet" href="static/faculty/assets/styles/index.css">
+
+</head>
+
+<body ng-controller="facultyCtrl as fc" layout="column" id="faculty-page">
+
+  <!-- <md-toolbar class="md-accent">
+    <div layout="row">
+      <img ng-src="{{fc.faculty.profileImg}}" alt="faculty profile">
+
+      <div class="header" flex md-truncate>
+        <h2 id="name">{{fc.faculty.name}}</h2>
+        <h3 id="designation">{{fc.faculty_positions[fc.faculty.position]}}</h3>
+        
+      <div class="date-container">
+          <md-datepicker ng-model="fc.date" md-placeholder="Enter date" md-min-date="fc.minDate" md-max-date="fc.maxDate" md-open-on-focus></md-datepicker>
+        </div>
+      </div>
+    </div>
+  </md-toolbar> -->
+  <md-toolbar layout="row" class="md-accent md-whiteframe-4dp">
+    <md-button class="menu" aria-label="show sidenav" ng-click="fc.toggleSideNav()">
+      <md-icon md-svg-icon="static/assets/svg/menu.svg"></md-icon>
+    </md-button>
+    <md-menu-bar layout="column" id="user-menu" class="md-accent" role="menubar">
+      <md-menu md-position-mode="left bottom" flex>
+        <md-button id="btn-user-profile" aria-label="user profile settings" ng-click="$mdMenu.open()">
+          <div class="content-wrapper" layout="row">
+            <div class="avatar-wrapper" layout="row">
+              <img id="img-user" ng-src="static/{{fc.faculty.profileImg || 'test/images/dummy.png'}}" alt="user profile picture" class="avatar">
+            </div>
+            <span class="username">
+              Hello, {{fc.faculty.name}}
+            </span>
+          </div>
+        </md-button>
+        <md-menu-content>
+          <md-menu-item>
+            <md-button ng-click="fc.profileMenuAction('ActivityLog')">Activity Log</md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button ng-click="fc.profileMenuAction('Setting')">Setting</md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button ng-click="fc.profileMenuAction('Logout')">Logout</md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
+    </md-menu-bar>
+
+    <div class="date-container">
+      <md-datepicker ng-model="fc.date" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+      <!-- md-min-date="fc.minDate" md-max-date="fc.maxDate" -->
+    </div>
+  </md-toolbar>
+  <md-progress-linear ng-show="tbar.loading" class="md-accent" md-mode="indeterminate"></md-progress-linear>
+  <md-content layout="column" flex>
+    <md-sidenav class="md-whiteframe-6dp" md-disable-backdrop md-component-id="left">
+      <md-list class="sidenav-list">
+        <md-list-item>
+          <md-button>
+            <md-icon md-svg-src="static/assets/svg/logout.svg"></md-icon>
+            <span>Logout</span>
+          </md-button>
+        </md-list-item>
+      </md-list>
+    </md-sidenav>
+    <md-card class="md-whiteframe-7dp" layout="column" flex>
+
+      <md-toolbar class="md-accent">
+        <div class="md-toolbar-tools">
+          <md-icon md-svg-icon="static/assets/svg/event.svg"></md-icon>
+          <h2 class="header" flex md-truncate>Events</h2>
+        </div>
+      </md-toolbar>
+      <md-card-content layout="column" style="padding:0" flex>
+        <div layout="row" flex>
+          <md-tabs md-swipe-content flex>
+            <md-tab ng-if="d.data.length>0" label="{{d.day}}" ng-repeat="d in fc.facultyData" md-on-select="fc.change(d)">
+
+              <div layout-gt-md="row" layout-md="column">
+                <ul>
+                  <li ng-repeat="slot in d.data" layout-md="column" layout-gt-md="row">
+                    <div class="slot">
+                      <span></span>
+                      <div class="type" ng-if="slot.type === 'lab'">
+                        <span>Lab</span>
+                      </div>
+                      <div class="type" ng-if="slot.type === 'lecture'">
+                        <span>Lecture</span>
+                      </div>
+                      <div class="type" ng-if="slot.type === 'tutorial'">
+                        <span>Tutorial</span>
+                      </div>
+                      <div class="title">
+                        <span>Subject :</span> {{slot.subject}}</div>
+                      <div class="info">
+                        <span>Room no. :</span> {{slot.room}}</div>
+                      <div class="subtitle">
+                        <span>Semester :</span> {{slot.sem}}</div>
+                      <div ng-if="slot.type === 'lab'">
+                        <span>Batch :</span> {{slot.batch}}</div>
+                    </div>
+                    <div class="slot" ng-if="slot.extra && slot.extra.subject">
+                      <span></span>
+                      <div class="type" ng-if="slot.extra.type === 'lab'">
+                        <span>Lab</span>
+                      </div>
+                      <div class="type" ng-if="slot.extra.type === 'lecture'">
+                        <span>Lecture</span>
+                      </div>
+                      <div class="type" ng-if="slot.extra.type === 'tutorial'">
+                        <span>Tutorial</span>
+                      </div>
+                      <div class="title">
+                        <span>Subject :</span> {{slot.extra.subject}}</div>
+                      <div class="info">
+                        <span>Room no. :</span> {{slot.extra.room}}</div>
+                      <div class="subtitle">
+                        <span>Semester :</span> {{slot.extra.sem}}</div>
+                      <div ng-if="slot.extra.type === 'lab'">
+                        <span>Batch :</span> {{slot.extra.batch}}</div>
+                    </div>
+                    <span class="number">
+                      <span>{{slot.start}}</span>
+                      <span>{{slot.end}}</span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </md-tab>
+            <!-- <md-tab label="Mon" md-on-select="fc.change(4,1,0)">
+
+              <div layout-gt-md="row" layout-md="column">
+                <ul>
+                  <li>
+                    <div>
+                        <span></span>
+                      <div class="title">subject: EEE</div>
+                      <div class="info">room no: 101</div>
+                      <div class="type">lecture</div>
+                    </div>
+                    <span class="number">
+                      <span>8:00</span>
+                      <span>9:00</span>
+                    </span>
+                  </li>
+                  <li>
+                    <div>
+                      <span></span>
+                      <div class="title">subject: OS</div>
+                      <div class="info">room no: 105</div>
+                      <div class="type">lecture</div>
+                    </div>
+                    <span class="number">
+                      <span>9:00</span>
+                      <span>10:00</span>
+                    </span>
+                  </li>
+                  <li>
+                    <div>
+                      <span></span>
+                      <div class="title">subject: EG</div>
+                      <div class="info">room no: Lab 1</div>
+                      <div class="type">Batch: B1</div>
+                    </div>
+                    <span class="number">
+                      <span>10:00</span>
+                      <span>11:45</span>
+                    </span>
+                  </li>
+                  <li>
+                    <div>
+                      <span></span>
+                      <div class="title">subject: Math</div>
+                      <div class="info">room no: 101</div>
+                      <div class="type">lecture</div>
+                    </div>
+                    <span class="number">
+                      <span>12:00</span>
+                      <span>1:00</span>
+                    </span>
+                  </li>
+                  <li>
+                    <div>
+                      <span></span>
+                      <div class="title">subject: PT</div>
+                      <div class="info">room no: 109</div>
+                      <div class="type">lecture</div>
+                    </div>
+                    <span class="number">
+                      <span>3:00</span>
+                      <span>4:00</span>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </md-tab>
+            <md-tab label="Tue" md-on-select="fc.change(3,1,1)">
+
+                <div layout-gt-md="row" layout-md="column">
+                  <ul>
+                    <li>
+                      <span></span>
+                      <div>
+                        <div class="title">subject: MTE</div>
+                        <div class="info">room no: 401</div>
+                        <div class="type">lecture</div>
+                      </div>
+                      <span class="number">
+                        <span>8:00</span>
+                        <span>9:00</span>
+                      </span>
+                    </li>
+                    <li>
+                      <div>
+                        <span></span>
+                        <div class="title">subject: OS</div>
+                        <div class="info">room no: 105</div>
+                        <div class="type">lecture</div>
+                      </div>
+                      <span class="number">
+                        <span>10:00</span>
+                        <span>11:00</span>
+                      </span>
+                    </li>
+                    <li>
+                      <div>
+                        <span></span>
+                        <div class="title">subject: EME</div>
+                        <div class="info">room no: wk-2</div>
+                        <div class="type">workshop</div>
+                      </div>
+                      <span class="number">
+                        <span>11:00</span>
+                        <span>12:45</span>
+                      </span>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <span></span>
+                      <div>
+                        <div class="title">subject: Math</div>
+                        <div class="info">room no: 101</div>
+                        <div class="type">tutorials</div>
+                      </div>
+                      <span class="number">
+                        <span>1:00</span>
+                        <span>2:00</span>
+                      </span>
+                    </li>
+                    <li>
+                      <div>
+                        <span></span>
+                        <div class="title">subject: PT</div>
+                        <div class="info">room no: 109</div>
+                        <div class="type">lecture</div>
+                      </div>
+                      <span class="number">
+                        <span>3:00</span>
+                        <span>5:00</span>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </md-tab>
+            <md-tab label="{{day}}" ng-repeat="day in ['Wed','Thu','Fri']" md-on-select="fc.change(5,2,1)">
+
+                <div layout-gt-md="row" layout-md="column">
+                  <ul>
+                    <li>
+                      <span></span>
+                      <div>
+                        <div class="title">subject: MTE</div>
+                        <div class="info">room no: 401</div>
+                        <div class="type">lecture</div>
+                      </div>
+                      <span class="number">
+                        <span>8:00</span>
+                        <span>9:00</span>
+                      </span>
+                    </li>
+                    <li>
+                      <div>
+                        <span></span>
+                        <div class="title">subject: OS</div>
+                        <div class="info">room no: 105</div>
+                        <div class="type">lecture</div>
+                      </div>
+                      <span class="number">
+                        <span>10:00</span>
+                        <span>11:00</span>
+                      </span>
+                    </li>
+                    <li>
+                      <div>
+                        <span></span>
+                        <div class="title">subject: EME</div>
+                        <div class="info">room no: wk-2</div>
+                        <div class="type">workshop</div>
+                      </div>
+                      <span class="number">
+                        <span>11:00</span>
+                        <span>12:45</span>
+                      </span>
+                    </li>
+                  </ul>
+                  <ul>
+                    <li>
+                      <span></span>
+                      <div>
+                        <div class="title">subject: Math</div>
+                        <div class="info">room no: 101</div>
+                        <div class="type">lecture</div>
+                      </div>
+                      <span class="number">
+                        <span>1:00</span>
+                        <span>2:00</span>
+                      </span>
+                    </li>
+                    <li>
+                      <div>
+                        <span></span>
+                        <div class="title">subject: PT</div>
+                        <div class="info">room no: 109</div>
+                        <div class="type">lecture</div>
+                      </div>
+                      <span class="number">
+                        <span>3:00</span>
+                        <span>5:00</span>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </md-tab> -->
+          </md-tabs>
+          <div layout="column" id="side-content">
+            <md-card class="md-whiteframe-7dp" flex>
+              <md-card-content layout="column" flex>
+                <div class="values">{{fc.lectures}}</div>
+                <div class="label">Lectures</div>
+              </md-card-content>
+            </md-card>
+            <md-card class="md-whiteframe-7dp" flex>
+              <md-card-content layout="column" flex>
+                <div class="values">{{fc.labs}}</div>
+                <div class="label">Labs</div>
+              </md-card-content>
+            </md-card>
+            <md-card class="md-whiteframe-7dp" flex>
+              <md-card-content layout="column" flex>
+                <div class="values">{{fc.tutorials}}</div>
+                <div class="label">Tutorials</div>
+              </md-card-content>
+            </md-card>
+          </div>
+        </div>
+      </md-card-content>
+      <!-- <md-card-action layout="row" layout-align="end center">
+            <md-button>btn 1</md-button>
+            <md-button>btn 2</md-button>
+        </md-card-action> -->
+    </md-card>
+  </md-content>
+</body>
+<!-- <link rel="stylesheet" media="none" onload="if(media==='none')media='all'" href="assets/fonts/Roboto.css"> -->
+<link rel="stylesheet" media="none" onload="if(media==='none')media='all'" href="https://fonts.googleapis.com/css?family=Roboto">
+
+<!-- <script src="assets/libs/JQuery/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+
+<!-- Angular Material requires Angular.js Libraries -->
+<!-- <script src="assets/libs/Angular/angular.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+
+<!-- <script src="assets/libs/Angular/angular-ui-router.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js" defer></script>
+
+<!-- <script src="assets/libs/Angular/angular-cookie.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-cookies.min.js" defer="true"></script>
+
+<!-- <script src="assets/libs/Angular/angular-animate.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js" defer></script>
+
+<!-- <script src="assets/libs/Angular/angular-aria.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-aria.min.js" defer></script>
+
+<!-- // For form validation messages
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-messages.min.js"></script> -->
+
+<!-- <script src="assets/libs/Angular_Material/angular-material.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.9/angular-material.min.js" defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.js" defer></script>
+
+<script src="static/faculty/app.module.js" defer></script>
+<script src="static/faculty/faculty.controller.js" defer></script>
+
+</html>

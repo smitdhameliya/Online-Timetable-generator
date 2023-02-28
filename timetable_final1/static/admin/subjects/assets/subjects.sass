@@ -1,0 +1,114 @@
+#subjects-page
+    .btn-add
+        transform: perspective(1px) translateZ(0)
+        box-shadow: 0 0 1px transparent
+        position: relative
+        background: #ffffff !important
+        transition-property: color
+        transition-duration: 0.2s
+        &::before
+            content: ""
+            position: absolute
+            z-index: -1
+            top: 0
+            left: 0
+            right: 0
+            bottom: 0
+            background: #2098D1
+            border-radius: 5px
+            transform: scale(0);
+            transition: transform .18s ease-out
+
+        &:hover, &:focus
+            md-icon svg path
+                fill: #ffffff
+
+        &:hover:before, &:focus:before
+            transform: scale(1)
+
+
+    md-dialog
+        border-radius: 8px
+    md-toolbar
+        border-top-left-radius: 8px
+        border-top-right-radius: 8px
+        background: #2196F3 !important
+        md-icon
+            min-width: 20px
+            width: 20px
+    md-card-content
+        padding: 0
+        & > span
+            display: block
+            margin-top: 18px
+        md-tabs 
+            md-tab-item.md-active
+                color: #2196F3 !important
+            .innerTabs
+                height: 100%
+                md-tab-item
+                    max-width: 130px !important
+                    &.md-active
+                        color: #ffffff !important
+                        background-color: #2196F3 !important
+                        border-top-right-radius: 8px
+                        border-top-left-radius: 8px
+                md-tabs-wrapper
+                    margin-left: 110px
+                    &::before
+                        content: 'Semesters:'
+                        position: absolute
+                        color: #2196F3
+                        top: 50%
+                        font-weight: 600
+                        font-size: large
+                        transform: translate(-100px, -50%)
+                .subjects
+                    margin-top: 20px
+                    display: flex
+                    flex-flow: row wrap
+                    justify-content: center
+                    .subject
+                        padding: 0 10px
+                        min-width: 90px
+                        height: 90px
+                        margin: 8px 15px
+                        border-radius: 10px
+                        cursor: pointer
+                        display: flex
+                        background-color: #2196F3
+                        border: 5px solid rgba(145, 119, 216, 0.64)
+                        span
+                            color: #ffffff
+                            margin: auto
+#editSubject
+    .radioType
+        margin-left: 20px
+    .topSpacing
+        margin-top: 25px
+    md-checkbox
+        display: flex
+        flex: 1
+        align-self: center
+        &.Margin_auto
+            .md-label
+                margin: auto !important
+    md-dialog-content
+        .schema
+            md-input-container
+                margin-bottom: 0
+        .batches_list
+            flex-flow: row wrap
+            md-input-container
+                margin-bottom: 0
+    md-dialog-actions
+        .md-button
+            color: #ffffff
+            background-color: rgba(103, 52, 245,0.85)
+            &:hover
+                background-color: rgb(103, 52, 245)
+#btn-remove, .md-confirm-button
+    background-color: rgba(255, 82, 82,0.85) !important
+    color: #ffffff !important
+    &:hover, &:focus
+        background-color: rgb(255, 82, 82) !important

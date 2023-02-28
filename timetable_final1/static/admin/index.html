@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appModule">
+
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Timetable Generator</title>
+
+  <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+  <!-- <link rel="stylesheet" href="admin/assets/libs/Angular_Material/angular-material.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.9/angular-material.min.css">
+  <link rel="stylesheet" href="static/admin/assets/styles/css/index.css">
+  <!-- <style>
+    @-webkit-keyframes sk-scaleout{0%{-webkit-transform:scale(0)} 100%{-webkit-transform:scale(1);opacity:0}}  @keyframes sk-scaleout{0%{-webkit-transform:scale(0);transform:scale(0)} 100%{-webkit-transform:scale(1);transform:scale(1);opacity:0}}
+  </style> -->
+
+</head>
+
+<!-- <body ng-controller="mainCtrl" layout="column" onload="removePreLoader()"> -->
+
+<body ng-controller="mainCtrl" layout="column">
+
+  <!-- <div id="preloader" style="width:100vw;height:100vh;position:absolute;background-color:#444;z-index:19999;overflow:hidden">
+    <div style="width:80px;height:80px;margin:auto;position:absolute;top:0;bottom:0;left:0;right:0;background-color:#fff;border-radius:100%;-webkit-animation:sk-scaleout 1s infinite ease-in-out;animation:sk-scaleout 1s infinite ease-in-out"></div>
+  </div> -->
+
+  <ui-view name="toolbar"></ui-view>
+  <!-- <toolbar></toolbar> -->
+
+  <div class="container" layout="row" flex>
+    <ui-view name="sidenav"></ui-view>
+    <!-- <side-nav></side-nav> -->
+    
+    <md-content id="content-left" layout="column" ui-view="view-left"></md-content>
+  </div>
+
+  <!-- <script>
+    // remove preloader
+    function removePreLoader() {
+        $('#preloader').delay(350).fadeOut("slow");
+    };
+  </script> -->
+
+</body>
+<link rel="stylesheet" media="none" onload="if(media==='none')media='all'" href="static/admin/assets/styles/css/desktop.css">
+<!-- <link rel="stylesheet" media="none" onload="if(media==='none')media='all'" href="admin/assets/fonts/Roboto.css"> -->
+<link rel="stylesheet" media="none" onload="if(media==='none')media='all'" href="https://fonts.googleapis.com/css?family=Roboto">
+
+<!-- <script src="admin/assets/libs/JQuery/jquery.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+
+<!-- Angular Material requires Angular.js Libraries -->
+<!-- <script src="admin/assets/libs/Angular/angular.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+
+<!-- <script src="admin/assets/libs/Angular/angular-ui-router.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js" defer></script>
+
+<!-- <script src="admin/assets/libs/Angular/angular-cookie.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-cookies.min.js" defer></script>
+
+<!-- <script src="admin/assets/libs/Angular/angular-animate.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js" defer></script>
+
+<!-- <script src="admin/assets/libs/Angular/angular-aria.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-aria.min.js" defer></script>
+
+<!-- // For form validation messages
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-messages.min.js"></script> -->
+
+<!-- <script src="admin/assets/libs/Angular_Material/angular-material.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.9/angular-material.min.js" defer></script>
+
+
+<script src="static/admin/app.module.js" defer></script>
+
+<script src="static/admin/configs/app.config.js" defer></script>
+<script src="static/admin/configs/app.routes.js" defer></script>
+<script src="static/admin/configs/theme.config.js" defer></script>
+
+<script src="static/admin/directives/head.directive.js" defer></script>
+<!-- <script src="static/admin/directives/sidenav.directive.js" defer></script> -->
+<!-- <script src="static/admin/directives/toolbar.directive.js" defer></script> -->
+
+<script src="static/admin/dashboard/mainCircle/mainCircle.run.js" defer></script>
+<script src="static/admin/factories/mainCircle.factory.js" defer></script>
+<script src="static/admin/factories/localStorage.factory.js" defer></script>
+
+<script src="static/admin/toolbar/toolbar.controller.js" defer></script>
+<script src="static/admin/sidenav/sidenav.controller.js" defer></script>
+
+<script src="static/admin/index.controller.js" defer></script>
+<script src="static/admin/resources/resources.controller.js" defer></script>
+<script src="static/admin/dashboard/dashboard.controller.js" defer></script>
+<script src="static/admin/faculties/faculies.controller.js" defer></script>
+<script src="static/admin/subjects/subjects.controller.js" defer></script>
+<script src="static/admin/timetable/timetable.controller.js" defer></script>
+
+
+</html>

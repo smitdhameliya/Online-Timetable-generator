@@ -1,0 +1,10 @@
+<div id="view-container" layout="column" flex>
+  <div id="mainCircle-container" hide-xs>
+    <div id="mainCircle">
+      <div id="outer-circle" ui-sref="." ng-click="db.expandCircle()" class="md-whiteframe-5dp"></div>
+      <button ui-sref=".{{item.name|lowercase}}" ng-click="getItem(item,$index)" ng-repeat="item in circle_Items"
+       class="mainCircle-items tooltip" ui-sref-active="active" data-name="{{item.name}}" ng-style="{{item.style}}"></button>
+    </div>
+  </div>
+  <div id="view-right" ui-view="view-right"></div>
+</div>

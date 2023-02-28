@@ -1,0 +1,143 @@
+#resources-page .btn-add {
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-box-shadow: 0 0 1px transparent;
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  background: #ffffff !important;
+  -webkit-transition-property: color;
+  -o-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.2s;
+  -o-transition-duration: 0.2s;
+  transition-duration: 0.2s; }
+  #resources-page .btn-add::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #8BC34A;
+    border-radius: 5px;
+    -webkit-transform: scale(0);
+    -ms-transform: scale(0);
+    transform: scale(0);
+    -webkit-transition: -webkit-transform .18s ease-out;
+    transition: -webkit-transform .18s ease-out;
+    -o-transition: transform .18s ease-out;
+    transition: transform .18s ease-out;
+    transition: transform .18s ease-out, -webkit-transform .18s ease-out; }
+  #resources-page .btn-add:hover md-icon svg path, #resources-page .btn-add:focus md-icon svg path {
+    fill: #ffffff; }
+  #resources-page .btn-add:hover:before, #resources-page .btn-add:focus:before {
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1); }
+
+#resources-page md-dialog {
+  border-radius: 8px; }
+
+#resources-page md-toolbar {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background: #8BC34A !important; }
+  #resources-page md-toolbar md-icon {
+    min-width: 20px;
+    width: 20px; }
+
+#resources-page md-card-content {
+  padding: 0; }
+  #resources-page md-card-content > span {
+    display: block;
+    margin-top: 18px; }
+  #resources-page md-card-content md-tabs md-tab-item.md-active {
+    color: #8BC34A !important; }
+  #resources-page md-card-content md-tabs .innerTabs {
+    height: 100%; }
+    #resources-page md-card-content md-tabs .innerTabs md-tab-item {
+      max-width: 130px !important; }
+      #resources-page md-card-content md-tabs .innerTabs md-tab-item.md-active {
+        color: #ffffff !important;
+        background-color: #8BC34A !important;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px; }
+    #resources-page md-card-content md-tabs .innerTabs md-tabs-wrapper {
+      margin-left: 110px; }
+      #resources-page md-card-content md-tabs .innerTabs md-tabs-wrapper::before {
+        content: 'Semesters:';
+        position: absolute;
+        color: #8BC34A;
+        top: 50%;
+        font-weight: 600;
+        font-size: large;
+        -webkit-transform: translate(-100px, -50%);
+        -ms-transform: translate(-100px, -50%);
+        transform: translate(-100px, -50%); }
+    #resources-page md-card-content md-tabs .innerTabs .resources {
+      margin-top: 20px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center; }
+      #resources-page md-card-content md-tabs .innerTabs .resources .resource {
+        padding: 0 10px;
+        min-width: 90px;
+        height: 90px;
+        margin: 8px 15px;
+        border-radius: 10px;
+        cursor: pointer;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background-color: #8BC34A;
+        border: 5px solid rgba(145, 119, 216, 0.64); }
+        #resources-page md-card-content md-tabs .innerTabs .resources .resource span {
+          color: #ffffff;
+          margin: auto; }
+
+#editSubject .radioType {
+  margin-left: 20px; }
+
+#editSubject .topSpacing {
+  margin-top: 25px; }
+
+#editSubject md-checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1; }
+  #editSubject md-checkbox.Margin_auto .md-label {
+    margin: auto !important; }
+
+#editSubject md-dialog-content .schema md-input-container {
+  margin-bottom: 0; }
+
+#editSubject md-dialog-content .batches_list {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-flow: row wrap;
+  flex-flow: row wrap; }
+  #editSubject md-dialog-content .batches_list md-input-container {
+    margin-bottom: 0; }
+
+#editSubject md-dialog-actions .md-button {
+  color: #ffffff;
+  background-color: rgba(103, 52, 245, 0.85); }
+  #editSubject md-dialog-actions .md-button:hover {
+    background-color: #6734f5; }
+
+#btn-remove, .md-confirm-button {
+  background-color: rgba(255, 82, 82, 0.85) !important;
+  color: #ffffff !important; }
+  #btn-remove:hover, #btn-remove:focus, .md-confirm-button:hover, .md-confirm-button:focus {
+    background-color: #ff5252 !important; }

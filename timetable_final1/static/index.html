@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="AppModule">
+
+<head>
+    <base href="/">
+    <title>Timetable Generator</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="website for generate and manage timetable of colleges and universities">
+
+    <link rel="shortcut icon" href="static/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body ng-controller="loginCtrl" style="display: grid;">
+
+<div class="loader-wrapper">
+    <md-progress-linear ng-show="$root.ploading" class="md-accent" md-mode="indeterminate"></md-progress-linear>
+</div>
+
+<div class="container">
+    <div class="card-wrapper">
+        <div class="card"></div>
+        <div class="card">
+            <h1 class="title">Login</h1>
+            <form ng-submit="login()" style="max-width:95vw">
+                <div class="input-container">
+                    <input name="username" ng-model="login_username" type="text"
+                           autocomplete="section-login loginForm username" title="username"
+                           required/>
+                    <label for="username">Username</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <input name="password" ng-model="login_password" type="password"
+                           autocomplete="section-login loginForm password" title="password"
+                           required/>
+                    <label for="passcode">Password</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="button-container">
+                    <button type="submit" ng-disabled="$root.ploading">
+                        <span>Go</span>
+                        <div class="loader" ng-show="$root.ploading"></div>
+                    </button>
+                </div>
+                <div class="footer">
+                    <a href="#">Forgot your password?</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Card for register user -->
+        <div class="card alt">
+            <div id="toggle">
+                <img style="width:40px; height:40px;" alt="register"
+                     src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjY0cHgiIGhlaWdodD0iNjRweCIgdmlld0JveD0iMCAwIDYxMi4zNzEgNjEyLjM3MSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNjEyLjM3MSA2MTIuMzcxOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPHBhdGggZD0iTTYwMy4yOTYsNzguNDg3TDU0MC4zNiwxNS41NDRjLTguMTQ0LTguMTQzLTE3LjAxNC0xMy4wNC0yNy4wMjgtMTQuODFDNTEwLjc0OSwwLjI4NCw1MDguNTIxLDAsNTA2LjY2NSwwICAgYy03LjAzNywwLTEzLjM0LDIuNTc1LTE4LjE0Myw3LjQwMUw0MjUuOTUsNzAuMzQ0TDMwLjU0Myw0NjQuNjQ2Yy0xLjExNCwxLjExMy0yLjM0Niw0LjQxNS0zLjcwNSwxMC4zN0wxLjI5NSw1ODcuMTk4ICAgYy0wLjc0MywyLjIyLTEuMTE0LDQuNDM5LTEuMTE0LDYuMjg4YzAsNC44MTcsMi4yMTksOS42MjgsNi4yOTUsMTMuNzAzYzMuMzMzLDMuMzMzLDcuNzcyLDUuMTgyLDEyLjU5LDUuMTgyICAgYzEuODQ4LDAsMy43MjgtMC4yNjEsNS41NTMtMC43NDJsMTA5Ljk2My0yOC44NzdjMi42MDYtMC42ODgsNi42NjctNC4wNjgsOC41MTUtNS45MjRsMzk0LjMwMS0zOTUuMDQ0bDYyLjk0My02Mi45NDMgICBjNy43NzItNy43NzIsMTEuODQ4LTE1LjU0NCwxMS44NDgtMjIuNTgyQzYxMi4xODIsODkuOTY0LDYwOS4wMzgsODQuMjI5LDYwMy4yOTYsNzguNDg3eiBNMTE3LjkxNyw1NDMuNTA0bC03Mi4yMDEsMTguMTQzICAgbDE4LjUxNC03Mi4xOTJsMy43MDUtNC40NDZsNTQuNDI5LDU0LjQyOUwxMTcuOTE3LDU0My41MDR6IE0xNTEuMjQxLDUxMC45MjNsLTU0LjQyOS01NC43OTJsMzQyLjQ3MS0zNDIuODQzbDU0Ljc5Miw1NC4wNTggICBMMTUxLjI0MSw1MTAuOTIzeiBNNTIyLjk2LDEzOS4yMTFsLTU0Ljc5Mi01NC40MjhsNDEuODM5LTQxLjgzOGw1NC40MjksNTQuNDI4TDUyMi45NiwxMzkuMjExeiIgZmlsbD0iI0ZGRkZGRiIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="
+                />
+            </div>
+
+            <h1 class="title"> Register
+                <div id="close"></div>
+            </h1>
+
+            <form name="register" ng-submit="reg()">
+                <div class="input-container">
+                    <input id="registerUsername" name="username" ng-model="register_username"
+                           autocomplete="new-password" title="new username"
+                           type="text" required/>
+                    <label for="registerUsername">Username</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <input id="registerPassword" name="password" ng-model="register_password"
+                           autocomplete="new-password" title="password" type="password"
+                           required/>
+                    <label for="registerPassword">Password</label>
+                    <div class="bar"></div>
+                </div>
+                <div class="input-container">
+                    <input id="registerRepPassword" name="rep_password" type="password" autocomplete="new-password"
+                           title="repeat password" required/>
+                    <label for="registerRepPassword">Repeat Password</label>
+                    <div id="b" class="bar"></div>
+                </div>
+                <div class="button-container">
+                    <button type="submit" ng-disabled="$root.ploading">
+                        <span>Register</span>
+                        <div class="loader" ng-show="$root.ploading"></div>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- wave design below the page -->
+    <svg class="waves" viewBox="0 0 100 30">
+        <path d="M0 30 V15 Q30 3 60 15 T100 20 V30z"></path>
+        <path d="M0 30 V12 Q30 20 55 12 T100 11 V30z"></path>
+        <path d="M0 30 V5 Q30 1 60 18 T100 27 V30z"></path>
+        <path d="M0 30 V8 Q30 1 60 35 T100 20 V30z"></path>
+        <path d="M0 30 V23 Q30 7 55 12 T100 15 V30z"></path>
+    </svg>
+</div>
+
+<!-- <link rel="stylesheet" href="admin/assets/libs/Angular_Material/angular-material.min.css"> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.9/angular-material.min.css">
+
+<link rel="stylesheet" href="static/assets/styles/login.css">
+
+<link rel='stylesheet prefetch'
+      href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900|RobotoDraft:400,100,300,500,700,900'
+      media="none" onload="if(media!=='all')media='all'">
+
+<!-- JQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- AngularJS scripts -->
+<!-- <script src="assets/libs/Angular/angular.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+
+<!-- <script src="assets/libs/Angular/angular-cookie.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-cookies.min.js" defer></script>
+
+<!-- <script src="admin/assets/libs/Angular/angular-animate.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-animate.min.js" defer></script>
+
+<!-- <script src="admin/assets/libs/Angular/angular-aria.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-aria.min.js" defer></script>
+
+<!-- // For form validation messages
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-messages.min.js"></script> -->
+
+<!-- <script src="admin/assets/libs/Angular_Material/angular-material.min.js" defer></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.9/angular-material.min.js" defer></script>
+
+<script src="static/services/authentication.service.js" defer></script>
+
+<script src="static/app.js" defer></script>
+
+
+<script>
+    var passcode = document.forms["register"]["password"];
+    var rep_passcode = document.forms["register"]["rep_password"];
+    var b = document.getElementById('b');
+
+    rep_passcode.addEventListener("keyup", (event) => {
+        if (rep_passcode.value === passcode.value) {
+            b.classList.remove('red');
+            b.classList.add('green');
+        } else {
+            b.classList.add('red');
+            b.classList.remove('green');
+        }
+    });
+
+    var containerClasses = document.getElementsByClassName('container')[0].classList;
+    document.getElementById('toggle').addEventListener('click', function () {
+        containerClasses.add('active');
+    });
+
+    document.getElementById('close').addEventListener('click', function () {
+        containerClasses.remove('active');
+    });
+
+</script>
+
+</body>
+
+</html>

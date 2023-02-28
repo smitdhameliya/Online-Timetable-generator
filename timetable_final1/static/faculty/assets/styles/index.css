@@ -1,0 +1,193 @@
+#faculty-page md-toolbar {
+  position: relative; }
+  #faculty-page md-toolbar img {
+    margin: 10px;
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%; }
+  #faculty-page md-toolbar .header {
+    margin-left: 30px; }
+    #faculty-page md-toolbar .header #name {
+      font-size: 1em; }
+    #faculty-page md-toolbar .header #designation {
+      margin-top: 0px; }
+  #faculty-page md-toolbar .date-container {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #fff;
+    -webkit-transform: translateY(-50%) scale(1.4);
+    -ms-transform: translateY(-50%) scale(1.4);
+    transform: translateY(-50%) scale(1.4);
+    margin: auto 70px auto; }
+    #faculty-page md-toolbar .date-container input {
+      color: #ffffff; }
+    #faculty-page md-toolbar .date-container .md-button {
+      border-top-color: #fff !important; }
+    #faculty-page md-toolbar .date-container .md-datepicker-expand-triangle {
+      -webkit-transform: translate(-50%, 100%);
+      -ms-transform: translate(-50%, 100%);
+      transform: translate(-50%, 100%); }
+  #faculty-page md-toolbar .md-button {
+    color: white;
+    margin: 0;
+    min-width: 50px;
+    min-height: 50px; }
+  #faculty-page md-toolbar md-menu-bar md-menu.md-open > .md-button {
+    background: rgba(238, 238, 238, 0.2) !important; }
+
+#faculty-page md-content .header {
+  margin-left: 10px; }
+
+#faculty-page md-content #slider-line {
+  height: 100%;
+  width: 3px;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-color: #666666; }
+
+#faculty-page md-content md-card {
+  border-radius: 10px; }
+  #faculty-page md-content md-card md-toolbar {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px; }
+  #faculty-page md-content md-card md-card-content {
+    min-height: calc(80vh - 100px); }
+    #faculty-page md-content md-card md-card-content ul {
+      margin: 0;
+      list-style: none;
+      position: relative;
+      padding: 1px 100px;
+      color: #333333;
+      font-size: 13px; }
+      #faculty-page md-content md-card md-card-content ul:before {
+        content: '';
+        width: 1px;
+        height: 100%;
+        position: absolute;
+        border-left: 2px dashed #03A9F4; }
+      #faculty-page md-content md-card md-card-content ul li {
+        position: relative;
+        margin-left: 30px;
+        background-color: rgba(255, 255, 255, 0.2);
+        padding: 14px;
+        border-radius: 6px;
+        min-width: 250px;
+        -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.08); }
+        #faculty-page md-content md-card md-card-content ul li:not(:first-child) {
+          margin-top: 60px; }
+        #faculty-page md-content md-card md-card-content ul li .number {
+          width: 2px;
+          height: 100%;
+          background: #03A9F4;
+          left: -30px;
+          top: 0;
+          position: absolute; }
+          #faculty-page md-content md-card md-card-content ul li .number:before, #faculty-page md-content md-card md-card-content ul li .number:after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 2px solid #03A9F4;
+            position: absolute;
+            background: #ffffff;
+            left: -5px; }
+          #faculty-page md-content md-card md-card-content ul li .number:before {
+            top: 0; }
+          #faculty-page md-content md-card md-card-content ul li .number:after {
+            bottom: -12px; }
+          #faculty-page md-content md-card md-card-content ul li .number span:after {
+            top: 100%; }
+        #faculty-page md-content md-card md-card-content ul li > div {
+          margin-left: 10px; }
+        #faculty-page md-content md-card md-card-content ul li.extra {
+          background-color: orange; }
+    #faculty-page md-content md-card md-card-content .slot > div {
+      margin-top: 5px; }
+      #faculty-page md-content md-card md-card-content .slot > div span {
+        font-weight: 600;
+        font-size: 12px; }
+    #faculty-page md-content md-card md-card-content .slot .type span {
+      font-size: 16px !important; }
+    #faculty-page md-content md-card md-card-content span.number {
+      height: 100%; }
+      #faculty-page md-content md-card md-card-content span.number span {
+        color: #333333;
+        position: absolute;
+        font-size: 10px;
+        left: -35px;
+        font-weight: bold; }
+        #faculty-page md-content md-card md-card-content span.number span:first-child {
+          top: 0; }
+        #faculty-page md-content md-card md-card-content span.number span:last-child {
+          top: 100%; }
+
+#side-content md-card {
+  min-width: 300px;
+  border-radius: 2px !important; }
+  #side-content md-card md-card-content {
+    min-height: 50px !important;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    #side-content md-card md-card-content .values {
+      margin: auto;
+      font-weight: 100;
+      font-size: 50px;
+      color: #7c4dff; }
+    #side-content md-card md-card-content .label {
+      position: absolute;
+      bottom: 5px;
+      right: 5px; }
+
+#user-menu {
+  padding: 0; }
+
+#btn-user-profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  margin: 0; }
+  #btn-user-profile .content-wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    #btn-user-profile .content-wrapper .username {
+      text-transform: capitalize;
+      margin-left: 5px;
+      font-size: 18px; }
+
+#img-user {
+  width: 50px;
+  height: 50px; }
+
+@media (max-width: 1279px) {
+  md-card-content ul:nth-child(2) {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important; } }
+
+::-webkit-scrollbar {
+  width: 8px; }
+
+::-webkit-scrollbar-thumb, scrollbar-track {
+  border-radius: 20px;
+  -webkit-box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4); }
+
+::-webkit-scrollbar-thumb {
+  background-color: #afafaf; }
+
+::-webkit-scrollbar-track {
+  opacity: 0; }

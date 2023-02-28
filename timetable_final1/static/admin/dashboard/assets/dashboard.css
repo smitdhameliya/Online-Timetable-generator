@@ -1,0 +1,29 @@
+#view-right {
+  will-change: transform, opacity;
+  position: relative; }
+  #view-right.ng-enter {
+    opacity: 0;
+    -webkit-transition: all .54s ease .24s;
+    -o-transition: all .54s ease .24s;
+    transition: all .54s ease .24s;
+    -webkit-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    transform: scale(0.5); }
+    #view-right.ng-enter.ng-enter-active {
+      opacity: 1;
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1); }
+  #view-right.ng-leave {
+    opacity: 1;
+    -webkit-transition: all .36s ease;
+    -o-transition: all .36s ease;
+    transition: all .36s ease;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1); }
+    #view-right.ng-leave.ng-leave-active {
+      opacity: 0;
+      -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+      transform: scale(0); }

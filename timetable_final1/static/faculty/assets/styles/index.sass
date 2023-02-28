@@ -1,0 +1,179 @@
+#faculty-page
+  md-toolbar
+    position: relative
+    img
+      margin: 10px
+      max-width: 50px
+      max-height: 50px
+      border-radius: 50%
+    .header
+      margin-left: 30px
+      #name
+        font-size: 1em
+        // margin-bottom: 10px
+      #designation
+        margin-top: 0px
+        // margin-left: 70px
+    .date-container
+      position: absolute
+      right: 5px
+      top: 50%
+      display: flex
+      color: #fff
+      transform: translateY(-50%) scale(1.4)
+      margin: auto 70px auto
+      input
+        color: #ffffff
+      .md-button
+        border-top-color:#fff !important
+      .md-datepicker-expand-triangle 
+        transform: translate(-50%,100%)
+        
+    .md-button
+      color: white
+      margin: 0
+      min-width: 50px
+      min-height: 50px
+    md-menu-bar md-menu.md-open > .md-button
+      background: rgba(238,238,238,0.2) !important
+      
+  md-content
+    .header
+      margin-left: 10px
+    #slider-line
+      height: 100%
+      width: 3px
+      position: absolute
+      left: 50%
+      transform: translateX(-50%)
+      background-color: #666666
+    md-card
+      border-radius: 10px
+      md-toolbar
+        border-top-left-radius: 10px
+        border-top-right-radius: 10px
+      md-card-content
+        min-height: calc(80vh - 100px)
+        ul
+          margin: 0
+          list-style: none
+          position: relative
+          padding: 1px 100px
+          color: #333333
+          font-size: 13px
+          &:before
+            content: ''
+            width: 1px
+            height: 100%
+            position: absolute
+            border-left: 2px dashed #03A9F4
+          li
+            position: relative
+            margin-left: 30px
+            background-color: rgba(255, 255, 255, 0.2)
+            padding: 14px
+            border-radius: 6px
+            min-width: 250px
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.08)
+            &:not(:first-child)
+              margin-top: 60px
+            .number
+              width: 2px
+              height: 100%
+              background: #03A9F4
+              left: -30px
+              top: 0
+              position: absolute
+              &:before, &:after
+                content: ''
+                width: 8px
+                height: 8px
+                border-radius: 50%
+                border: 2px solid #03A9F4
+                position: absolute
+                background: #ffffff
+                left: -5px
+              &:before
+                top: 0
+              &:after
+                bottom: -12px
+              span:after
+                top: 100%
+            > div
+              margin-left: 10px
+            &.extra
+              background-color: orange
+        .slot
+          > div
+            margin-top: 5px
+            span
+              font-weight: 600
+              font-size: 12px
+          .type
+            span
+              font-size: 16px !important
+
+        span.number
+          height: 100%
+          span
+            color: #333333
+            position: absolute
+            font-size: 10px
+            left: -35px
+            font-weight: bold
+            &:first-child
+              top: 0
+            &:last-child
+              top: 100%
+#side-content
+  md-card
+    min-width: 300px
+    border-radius: 2px !important
+    md-card-content
+      min-height: 50px !important
+      position: relative
+      display: flex
+      .values
+        margin: auto
+        font-weight: 100
+        font-size: 50px
+        color: rgb(124,77,255)
+      .label
+        position: absolute
+        bottom: 5px
+        right: 5px
+
+
+#user-menu
+  padding: 0
+            
+#btn-user-profile
+  display: flex
+  height: 100%
+  margin: 0
+
+  .content-wrapper
+    display: flex
+    align-items: center
+    .username
+      text-transform: capitalize
+      margin-left: 5px
+      font-size: 18px
+#img-user
+    width: 50px
+    height: 50px
+
+@media (max-width: 1279px)
+  md-card-content
+    ul:nth-child(2)
+      margin-top: 30px !important
+      margin-bottom: 30px !important
+::-webkit-scrollbar
+    width: 8px
+::-webkit-scrollbar-thumb, scrollbar-track
+    border-radius: 20px
+    box-shadow: inset 0 0 8px rgba(0,0,0,.4)
+::-webkit-scrollbar-thumb
+    background-color: #afafaf
+::-webkit-scrollbar-track
+    opacity: 0

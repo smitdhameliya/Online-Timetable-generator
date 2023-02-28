@@ -1,0 +1,17 @@
+#view-right
+    will-change: transform, opacity
+    position: relative
+    &.ng-enter
+        opacity: 0
+        transition: all .54s ease .24s
+        transform: scale(0.5)
+        &.ng-enter-active
+            opacity: 1
+            transform: scale(1)
+    &.ng-leave
+        opacity: 1
+        transition: all .36s ease
+        transform: scale(1)
+        &.ng-leave-active
+            opacity: 0
+            transform: scale(0)

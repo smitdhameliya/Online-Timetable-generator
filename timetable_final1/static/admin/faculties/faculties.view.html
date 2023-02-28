@@ -1,0 +1,246 @@
+<md-card class="md-whiteframe-7dp" id="faculty-page">
+  <md-card-title>
+    <md-card-title-text ng-class="fc.isSearching ? 'full': ''">
+      <div class="preEle" ng-hide="fc.isSearching">
+        <md-icon md-svg-icon="static/admin/assets/svg/faculties.svg"></md-icon>
+        <h2 class="headline">Faculties</h2>
+        <md-button ng-click="fc.toggleSearch()">
+          <md-icon md-svg-icon="static/admin/assets/svg/search.svg"></md-icon>
+        </md-button>
+      </div>
+      <div class="overlay">
+        <div class="ripple"></div>
+      </div>
+      <div id="searchEle-container" ng-show="fc.isSearching">
+        <div class="input-container">
+          <div layout="column">
+            <div class="md-block">
+
+              <div layout="row">
+                <md-input-container>
+                  <label>Name</label>
+                  <input ng-model="fc.search.name">
+                </md-input-container>
+                <div class="md-block btn-moreOpt">
+                  <md-button ng-click="fc.showMoreOptions()" aria-label="show more filter options">
+                    <md-icon ng-if="!fc.showMoreOpt" md-svg-icon="static/admin/assets/svg/plus-symbol.svg"></md-icon>
+                    <span ng-if="!fc.showMoreOpt">more filter</span>
+
+                    <md-icon ng-if="fc.showMoreOpt" md-svg-icon="static/admin/assets/svg/remove.svg"></md-icon>
+                    <span ng-if="fc.showMoreOpt">less filter</span>
+                  </md-button>
+                </div>
+              </div>
+            </div>
+            <div class="moreOpt" ng-show="fc.showMoreOpt">
+              <md-input-container style="margin-bottom:5px" class="md-block">
+                <label>Position</label>
+                <md-select ng-model="fc.search.position">
+                  <md-option>
+                    <em>None</em>
+                  </md-option>
+                  <md-option ng-repeat="position in fc.faculty_positions" value="{{$index + 1}}">
+                    {{position}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+              <md-input-container style="margin-bottom:5px" class="md-block">
+                <label>Sort Experience-wise</label>
+                <md-select ng-model="fc.search.experience">
+                  <md-option>
+                    <em>None</em>
+                  </md-option>
+                  <md-option value="-experience.academic">
+                    Academic
+                  </md-option>
+                  <md-option value="-experience.industrial">
+                    Industrial
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-close-container">
+          <md-button class="btn-close" ng-click="fc.toggleSearch()">
+            <md-icon md-svg-icon="static/admin/assets/svg/close.svg"></md-icon>
+          </md-button>
+        </div>
+      </div>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <div id="faculties-container">
+      <div ng-click="fc.getFaculty(faculty,$event)" ng-repeat="faculty in fc.faculties | filter:{name: fc.search.name, position: fc.search.position} | orderBy:fc.search.experience track by faculty.id"
+        class="faculty" layout="column">
+        <md-button class="btn-edit" aria-label="edit faculty {{faculty.name}}">
+          <md-icon md-svg-src="static/admin/assets/svg/edit.svg"></md-icon>
+        </md-button>
+        <img ng-src="static/{{faculty.profileImg || 'test/images/dummy.png'}}" alt="profile Image">
+        <span>{{faculty.name | uppercase}}</span>
+      </div>
+    </div>
+
+    <md-button class="md-fab md-fab-bottom-right" ng-click="fc.showInsertDialog($event)" aria-label="Insert new Faculty">
+      <md-tooltip md-direction="top">Insert new Faculty</md-tooltip>
+      <md-icon md-svg-src="static/admin/assets/svg/plus-symbol.svg"></md-icon>
+    </md-button>
+
+    <div style="visibility: hidden">
+      <div id="editFaculty" class="md-dialog-container">
+        <md-dialog layout-padding>
+          <md-dialog-content>
+            <form name="fc.form_edit_faculty">
+              <div layout="column">
+                <div class="md-block">
+                  <div layout-gt-xs="row" layout-xs="column">
+                    <div class="image">
+                      <md-button class="btn-edit" ng-click="fc.updateImg(fc.ed_faculty)" aria-label="update profile picture of faculty {{faculty.name}}">
+                        <md-icon md-svg-src="static/admin/assets/svg/edit.svg"></md-icon>
+                      </md-button>
+                      <img ng-src="static/{{fc.ed_faculty.profileImg || 'admin/test/images/dummy.png'}}" alt="profile Image">
+                    </div>
+                    <div class="md-block">
+                      <div layout="column">
+                        <div class="md-block">
+                          <div layout="row">
+                            <md-input-container class="md-block">
+                              <label>Title</label>
+                              <md-icon style="fill:#2a2a5f" md-svg-src="static/admin/assets/svg/new-user.svg"></md-icon>
+                              <md-select name="title" ng-model="fc.ed_faculty.title" required>
+                                <md-option>
+                                  <em>None</em>
+                                </md-option>
+                                <md-option ng-repeat="title in fc.faculty_titles" value="{{title}}">
+                                  {{title}}
+                                </md-option>
+                              </md-select>
+                              <div ng-messages="fc.form_edit_faculty.title.$error" ng-show="fc.form_edit_faculty.title.$dirty && !fc.form_edit_faculty.title.$error">
+                                <div ng-message="required">Please select title of Faculty!</div>
+                              </div>
+                            </md-input-container>
+                            <md-input-container>
+                              <label>Name</label>
+                              <input name="name" ng-model="fc.ed_faculty.name" required>
+                              <div ng-messages="fc.form_edit_faculty.name.$error" ng-show="fc.form_edit_faculty.name.$dirty && !fc.form_edit_faculty.name.$error">
+                                <div ng-message="required">Please provide name of Faculty!</div>
+                              </div>
+                            </md-input-container>
+                          </div>
+                        </div>
+                        <md-input-container style="margin-bottom:24px" class="md-block">
+                          <label>Position</label>
+                          <md-icon style="fill:#18b0f5" md-svg-src="static/admin/assets/svg/position.svg"></md-icon>
+                          <md-select name="position" ng-model="fc.ed_faculty.position" required>
+                            <md-option ng-repeat="position in fc.faculty_positions" value="{{$index+1}}">
+                              {{position}}
+                            </md-option>
+                          </md-select>
+                          <div ng-messages="fc.form_edit_faculty.position.$error" ng-show="fc.form_edit_faculty.position.$dirty && !fc.form_edit_faculty.position.$error">
+                            <div ng-message="required">Please select position of Faculty!</div>
+                          </div>
+                        </md-input-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <div class="input-container" layout="column" style="max-width:470px">
+                    <md-input-container>
+                      <label>Qualification</label>
+                      <md-icon style="fill:#d03b3b" md-svg-src="static/admin/assets/svg/qualification.svg"></md-icon>
+                      <md-chips name="qualification" ng-model="fc.ed_faculty.qualification" md-removable="true" placeholder="Enter qualifications"
+                        md-enable-chip-edit="true" secondary-placeholder="+qualification"></md-chips>
+                      <div ng-messages="fc.ed_faculty.qualification.length < 1" ng-show="fc.form_edit_faculty.qualification.$dirty && (fc.ed_faculty.qualification.length < 1)">
+                        <div ng-message="required">Please provide qualifications of Faculty!</div>
+                      </div>
+                    </md-input-container>
+                    <md-input-container>
+                      <label>Email Address</label>
+                      <md-icon style="fill:#04a4ec" md-svg-src="static/admin/assets/svg/gmail.svg"></md-icon>
+                      <input name="email" ng-model="fc.ed_faculty.email" type="email" required>
+                      <div ng-messages="fc.form_edit_faculty.email.$error" ng-show="fc.form_edit_faculty.email.$dirty && !fc.form_edit_faculty.email.$error">
+                        <div ng-message="required">Please provide email of Faculty!</div>
+                      </div>
+                    </md-input-container>
+                    <div layout-gt-xs="row" layout-xs="column">
+                      <md-input-container>
+                        <md-icon style="fill:#e58f2f" md-svg-src="static/admin/assets/svg/academic.svg"></md-icon>
+                        <label>Experience (Academics)</label>
+                        <input name="experience_academic" type="number" ng-model="fc.ed_faculty.experience.academic" required>
+                        <div ng-messages="fc.form_edit_faculty.experience_academic.$error" ng-show="fc.form_edit_faculty.experience_academic.$dirty && !fc.form_edit_faculty.experience_academic.$error">
+                          <div ng-message="required">Please provide academic experience of Faculty!</div>
+                        </div>
+                      </md-input-container>
+                      <md-input-container>
+                        <md-icon style="fill:#9a3916" md-svg-src="static/admin/assets/svg/industrial.svg"></md-icon>
+                        <label>Experience (Industrial)</label>
+                        <input name="experience_industrial" type="number" ng-model="fc.ed_faculty.experience.industrial" required>
+                        <div ng-messages="fc.form_edit_faculty.experience_industrial.$error" ng-show="fc.form_edit_faculty.experience_industrial.$dirty && !fc.form_edit_faculty.experience_industrial.$error">
+                          <div ng-message="required">Please provide industrial experience of Faculty!</div>
+                        </div>
+                      </md-input-container>
+                    </div>
+                    <md-input-container>
+                      <md-icon style="fill:#e58f2f" md-svg-src="static/admin/assets/svg/academic.svg"></md-icon>
+                      <label>Faculty workload (weekly)</label>
+                      <input type="number" ng-model="fc.ed_faculty.workload" required>
+                      <div ng-messages="fc.form_edit_faculty.workload.$error" ng-show="fc.form_edit_faculty.workload.$dirty && !fc.form_edit_faculty.workload.$error">
+                        <div ng-message="required">Please provide workload of Faculty!</div>
+                      </div>
+                    </md-input-container>
+                    <md-input-container>
+                      <label>Subjects taken by faculty</label>
+                      <md-icon style="fill:#d03b3b" md-svg-src="static/admin/assets/svg/new-subjects.svg"></md-icon>
+                      <md-chips name="subjects" md-menu-class="chip-drop-down" ng-model="fc.ed_faculty.subjects" md-removable="true"
+                        placeholder="Enter subjects" md-transform-chip="fc.transformChip($chip)" md-enable-chip-edit="true"
+                        md-autocomplete-snap="width" md-require-match="true" secondary-placeholder="+subject">
+
+                        <md-autocomplete md-selected-item="fc.selectedItem" md-search-text="fc.searchText" md-items="item in fc.querySearch(fc.searchText)"
+                          md-item-text="item.sub_name" placeholder="Search for Subjects">
+                          <span md-highlight-text="fc.searchText">
+                            {{item.sub_name}}
+                            <em>( {{item.sub_code}} )</em>
+                          </span>
+                        </md-autocomplete>
+
+                        <md-chip-template>
+                          <strong>{{$chip.sub_name}}</strong>
+                          <em>( {{$chip.sub_code}} )</em>
+                        </md-chip-template>
+                      </md-chips>
+                      <div ng-messages="fc.ed_faculty.subjects.length < 1" ng-show="fc.form_edit_faculty.subjects.$dirty && (fc.ed_faculty.subjects.length < 1)">
+                        <div ng-message="required">Please provide subjects to be taken by Faculty!</div>
+                      </div>
+                    </md-input-container>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </md-dialog-content>
+
+          <md-dialog-actions layout="row">
+            <md-button id="btn-removeFaculty" ng-if="fc.action === 'update'" ng-click="fc.removeFaculty($event)">
+              Remove
+              <span>Faculty</span>
+            </md-button>
+            <span flex></span>
+            <md-button ng-if="fc.form_edit_faculty.$dirty" ng-click="fc.faculty_action(fc.action)" md-autofocus>
+              {{fc.action | uppercase}}
+            </md-button>
+            <md-button ng-click="fc.dialog_cancel()">
+              CANCEL
+            </md-button>
+          </md-dialog-actions>
+        </md-dialog>
+      </div>
+    </div>
+
+
+  </md-card-content>
+  <!-- <md-card-action layout="row" layout-align="end center">
+        <md-button>btn 1</md-button>
+        <md-button>btn 2</md-button>
+    </md-card-action> -->
+</md-card>

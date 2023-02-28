@@ -1,0 +1,164 @@
+<md-card class="md-whiteframe-7dp" id="timetable-page">
+  <!-- <md-card-title>
+    <md-card-title-text>
+    </md-card-title-text>
+  </md-card-title> -->
+  <md-card-content class="timetable-wrraper" layout-gt-xs="row" layout-xs="column" style="padding:0;min-height: 85vh">
+
+    <div class="under-part" layout="column" flex>
+      <div class="md-block header">
+        <div layout-gt-xs="row" layout-xs="column">
+          <div layout="column">
+            <h2 class="headline">
+              <md-icon md-svg-icon="static/admin/assets/svg/calendar.svg"></md-icon>
+              <span>Timetable</span>
+            </h2>
+            <div class="status">
+              <span>{{tml.selected_discipline}}</span>
+              <span ng-show="tml.selected_semesters" class="smbl">&gt;</span>
+              <span ng-show="tml.selected_semesters">{{tml.selected_semesters}}</span>
+              <span ng-show="tml.selected_sem.sem" class="smbl">&gt;</span>
+              <span ng-show="tml.selected_sem.sem">{{tml.selected_sem.sem}}</span>
+            </div>
+          </div>
+          <div class="ml30" layout-gt-md="row" layout-md="column" flex>
+            <div layout="row" id="serachbar" flex>
+              <md-input-container layout="row">
+                <label>Subject</label>
+                <md-select ng-model="tml.search.subject">
+                  <md-option>
+                    <em>None</em>
+                  </md-option>
+                  <md-option ng-value="subject" ng-repeat="subject in tml.subjectlist">
+                    {{subject}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+  
+              <md-input-container layout="row">
+                <label>Faculty</label>
+                <md-select ng-model="tml.search.faculty">
+                  <md-option>
+                    <em>None</em>
+                  </md-option>
+                  <md-option ng-value="faculty" ng-repeat="faculty in tml.facultylist">
+                    {{faculty}}
+                  </md-option>
+                </md-select>
+              </md-input-container>
+            </div>
+            <div layout="row" class="classroom-details" flex>
+              <span>Classroom: &nbsp;</span>
+              <span>{{tml.classroom}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="loader" ng-show="tml.loading" flex>
+        <!-- <md-progress-circular md-mode="indeterminate"></md-progress-circular> -->
+        <md-progress-circular md-mode="indeterminate" md-diameter="96" style="display: flex;margin: auto;margin-top: 100px"></md-progress-circular>
+        <!-- <md-progress-circular md-mode="determinate" value="{{tml.determinateValue}}" md-diameter="96" style="display: flex;margin: auto;margin-top: 100px"></md-progress-circular> -->
+      </div>
+      <md-tabs md-swipe-content flex md-stretch-tabs="always">
+
+        <md-tab label="{{semester.name}}" ng-repeat="semester in tml.EachSemesters" layout="column" md-on-select="tml.change(semester)" flex>
+          <div class="section-timetable" flex>
+            <table flex>
+              <thead>
+                <th></th>
+                <th ng-repeat="item in tml.timeNumbers">{{ item }}</th>
+              </thead>
+              <tbody>
+                <!-- <tr colspan="{{tml.timeNumbers.length}}">{{semester.shift}}</tr> -->
+                <tr ng-repeat="day in semester.days">
+                  <th>{{ day.name | uppercase}}</th>
+                  <td ng-repeat="s in day.slots" ng-init="type = s.type">
+                    <!-- <div class="data" ng-repeat="v in s.values track by v.batch" ng-class="(tml.search.subject === v.subject || tml.search.faculty === v.faculty)?'highlight':''"> -->
+                    <div class="data" ng-repeat="v in s.values track by v.batch" ng-class="((tml.search.subject === 'None' || tml.search.subject === '') && tml.search.faculty === v.faculty) || (tml.search.subject === v.subject && (tml.search.faculty === '' ||tml.search.faculty === 'None')) || (tml.search.subject === v.subject && tml.search.faculty === v.faculty)?'highlight' : ''">
+                      <span class="span-sub">{{ v.subject }}</span>
+                      <md-tooltip md-direction="top" ng-if="type==='lab'">
+                        <span class="span-batch" ng-show="s.batch !== ''">Batch: {{ v.batch }}</span>
+                        <span class="span-room" ng-show="s.room !== ''">[{{ v.room }}]</span>
+                      </md-tooltip>
+                      <span class="span-fac" ng-show="s.faculty !== ''">[ {{ v.faculty }} ]</span>
+                    </div>
+                  </td>
+                </tr>
+                <!-- <tr ng-hide="tml.showTimetable">
+                <td colspan="8">
+                  <h4>{{ (tml.showDisciplines && !tml.showSemesters) ? 'Please, select Discipline' : (tml.showSemesters && !tml.showEachSemesters)
+                    ? 'Next, select the type of Semsters' : (!tml.valid_Semester_Select && tml.showEachSemesters) ? 'Next, select
+                    a Semester' : 'Let\'s generate timetable' }} </h4>
+                </td>
+              </tr> -->
+
+                <tr ng-show="tml.generatingTimetable || tml.regeneratingTimetable">
+                  <td colspan="8">
+                    <h4>{{ tml.generatingTimetable ? 'Fetching data of ' + tml.selected_semester : tml.regeneratingTimetable
+                      ? 'Regenerating data of ' + tml.selected_semester : ''}}
+                    </h4>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </md-tab>
+      </md-tabs>
+
+
+    </div>
+    <div layout-gt-xs="column" layout-xs="row" class="outer-part md-whiteframe-9dp">
+
+      <div class="section-config" ng-class="!tml.showFullTT ? 'small':''" flex>
+        <md-button class="btn-left" ng-click="tml.showFullTT = !tml.showFullTT" aria-label="show full timetable view">
+          <md-icon md-svg-icon="static/admin/assets/svg/right-arrow.svg" ng-class="!tml.showFullTT ? 'active': ''"></md-icon>
+        </md-button>
+        <form name="tml.get_timetable" ng-hide="!tml.showFullTT">
+          <div layout="column">
+
+            <md-input-container>
+              <label>Select Discipline</label>
+              <md-select class="md-accent" ng-change="tml.select_discipline()" ng-model="tml.selected_discipline" md-no-asterisk>
+                <md-option ng-repeat="discipline in tml.disciplines" ng-value="discipline">
+                  {{discipline}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+
+            <md-input-container>
+              <label>Select Semester</label>
+              <md-select class="md-accent" ng-change="tml.select_semesters()" name="semesters" ng-model="tml.selected_semesters" ng-required="true"
+                md-no-asterisk>
+                <md-option ng-repeat="semester in tml.semesters" ng-value="semester">
+                  {{semester}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <!-- 
+            <md-input-container>
+              <label>Select Semester</label>
+              <md-select class="md-accent" name="semester" ng-model="tml.selected_sem" ng-change="tml.validateSemesterSelect()" md-no-asterisk>
+                <md-option ng-repeat="semester in tml.EachSemesters" ng-value="semester">
+                  {{semester.name}}
+                </md-option>
+              </md-select>
+            </md-input-container> -->
+
+            <md-input-container style="margin:10px auto">
+              <md-button id="btn-regen" ng-click="tml.generate_timetable()" class="md-raised">Generate</md-button>
+            </md-input-container>
+
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </md-card-content>
+  <!-- <md-card-action layout="row" layout-align="end center">
+          <md-button>btn 1</md-button>
+          <md-button>btn 2</md-button>
+      </md-card-action> -->
+</md-card>

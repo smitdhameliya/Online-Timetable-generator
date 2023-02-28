@@ -1,0 +1,231 @@
+#timetable-page
+    .under-part
+        z-index: 100        
+        .classroom-details
+            color: #ffffff
+            margin: 10px
+            span
+                justify-content: center
+                display: flex
+                align-items: center
+    .ml30
+        margin-left: 30px
+    .outer-part
+        z-index: 101
+    .header
+        min-height: 60px
+        padding: 4px 0 0 10px
+        background: rgb(255, 82, 82)
+        & > div
+            margin-left: 20px
+        .status
+            color: #ffffff
+            margin: 5px 0 5px 41px
+            span:not(.smbl)
+                text-decoration: underline
+    .headline
+        font-size: 20px !important
+        font-weight: 400
+        margin-bottom: 5px
+        span
+            color: #ffffff
+            margin-left: 10px
+
+    .section-timetable
+        overflow: auto
+        height: 100%
+        table
+            height: calc(100% - 1px)
+            min-width: 100%
+            min-height: calc(100% - 1px)
+            border-collapse: collapse
+            thead
+                background: rgba(0,0,0,.03)
+                th
+                    padding: 5px 0
+                    // background-color: #ededed
+                    color: rgba(0,0,0,.54)
+            tbody
+                tr
+                    transition: all .5s ease
+                    border-bottom: 1px solid rgba(0,0,0,.12)
+                    th,td
+                        padding: 0 10px
+                    th
+                        background-color: #dcdcdc
+                    td
+                        color: rgba(0,0,0,.87)
+                        &.highlight
+                            background-color: #00E676
+                        span
+                            // white-space: nowrap
+                            // display: flex
+                            // justify-content: flex-start
+                        .span-sub, .span-batch,.span-room,.span-fac
+                            display: inline !important
+                        .span-fac
+                            // display: block !important
+                            font-size: 12px
+                        .data
+                            cursor: pointer
+                            &.highlight
+                                transition: all .5s ease
+                                background: rgba(255, 82, 82,.6) !important
+                                color: #ffffff !important
+                                padding: 7px
+                    &:hover
+                        background-color: #EEEEEE
+    .section-config
+        // background-color: #f35e5c
+        background-color: #ffffff
+        overflow: hidden
+        transition: all .45s ease
+        &.small
+            width: 50px
+
+        .btn-left
+            justify-content: flex-start
+            max-width: 52px
+            border: none !important
+            min-width: 52px
+            margin: auto 0 !important
+            padding: 14px 0
+            md-icon 
+                &.active
+                    svg
+                        transform: rotate(180deg)
+                svg
+                    width: 100%
+                    height: auto
+                    // fill: #ffffff
+                    fill: rgb(255, 82, 82)
+                    overflow: visible
+                    polygon,  path
+                        transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1)
+            &:hover polygon, &:hover path
+                transition: all .7s cubic-bezier(0.2, 1, 0.3, 1);
+            &:hover .arrow
+                animation: arrow-anim 2.5s cubic-bezier(0.2, 1, 0.3, 1) infinite
+            &:hover .arrow-fixed
+                animation: arrow-fixed-anim 2.5s cubic-bezier(0.2, 1, 0.3, 1) infinite
+        form > div
+            margin: 0 10px
+        span
+            // color: #ffffff !important
+            color: rgb(255, 82, 82) !important
+        .md-input-focused label, label
+            // color: rgba(255,255,255,.8) !important
+            color: rgba(124,77,255,.8) !important
+        .md-button
+            display: flex
+            margin: auto
+            // color: #ffffff
+            color: rgb(255, 82, 82)
+            transition: all .54s ease
+#btn-generate
+        padding: 0 20px
+        border-radius: 6px
+        border: 2px solid #ffffff
+        background-color: transparent
+        &:hover
+            border: 2px solid rgba(124, 77, 255, 1)
+            background-color: rgba(124, 77, 255, 1) !important
+
+[disabled] md-input-container > md-select
+    pointer-events: none
+
+[disabled] md-input-container > md-select .md-select-value
+    background-position: bottom -1px left 0
+    background-size: 4px 1px
+    background-repeat: repeat-x
+    border-bottom-color: transparent
+    color: rgba(0,0,0,0.38)
+    background-image: linear-gradient(90deg,rgba(0,0,0,0.38) 0,rgba(0,0,0,0.38) 33%,transparent 0)
+            
+#serachbar
+    md-input-container
+        margin: auto 10px
+    span
+        color: #ffffff !important
+    .md-input-focused label, label
+        color: rgba(255,255,255,.8) !important
+    md-checkbox
+        margin: auto
+
+#btn-regen
+    color: red
+    padding: 0 20px
+    border-radius: 6px
+    border: 2px solid #ffffff
+    background: #ffffff
+    &:hover
+        animation: rubberBand .46s
+
+    @keyframes rubberBand
+        0%
+            transform: scale3d(1, 1, 1)
+        30%
+            transform: scale3d(1.25, 0.83, 1)
+        40%
+            transform: scale3d(0.75, 1.25, 1)
+        50%
+            transform: scale3d(1.15, 0.85, 1)
+        65%
+            transform: scale3d(0.95, 1.05, 1)
+        75%
+            transform: scale3d(1.05, 0.95, 1)
+        100%
+            transform: scale3d(1, 1, 1)
+
+    @keyframes arrow-anim
+        0%
+            opacity: 1
+            transform: translateX(0)
+        5%
+            transform: translateX(-0.1rem)
+        100%
+            transform: translateX(1rem);
+            opacity: 0
+    @keyframes arrow-fixed-anim
+        5%
+            opacity: 0
+        20%
+            opacity: 0.4
+        100%
+            opacity: 1
+
+// small devices
+@media (max-width: 599px)
+    #timetable-page
+        .timetable-wrraper
+            flex-direction: column-reverse !important
+        // .header
+        //     display: none
+        .section-config
+            width: 100%
+            border-top-left-radius: 8px
+            border-top-right-radius: 8px
+            flex: none
+            &.small
+                border-top-right-radius: 0
+        .btn-left
+            md-icon
+                transition: all .63s ease
+                svg
+                    transform: rotate(180deg)
+                &.active svg
+                        transform: rotate(0deg) !important
+// desktop
+@media (min-width: 600px)
+    #timetable-page
+        overflow: visible
+        .section-config
+            width: 240px
+            border-radius: 0 8px 8px 0
+        md-card-content
+            max-height: calc(100vh - 7em)
+            .header
+                border-top-left-radius: 8px 
+md-checkbox
+    .md-icon
+        border-color: #ffffff !important
